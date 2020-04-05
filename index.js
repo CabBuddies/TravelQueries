@@ -33,4 +33,7 @@ app.use('/query',require('./api/routes/query'))
 
 app.use('/response',require('./api/routes/response'))
 
+app.use('/comment',require('./api/routes/comment'))
+
+app.use('/test',require('./test'))
 //console.log(app._router.stack)

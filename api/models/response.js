@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
-var idvalidator = require('mongoose-id-validator');
+const idvalidator = require('mongoose-id-validator');
+const statsSchema = require('./stats');
 
 const responseSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+    //_id: mongoose.Schema.Types.ObjectId,
     body:{
         type:String,
         minLength:1,
@@ -16,15 +17,11 @@ const responseSchema = mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'Query'
     },
-    stats:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Stats'
-    },
+    stats:statsSchema,
     hidden:{
         type:Boolean,
         default:false
     },
-
     postedOn:{ 
         type: Date, 
         default: Date.now 
@@ -42,5 +39,15 @@ const responseSchema = mongoose.Schema({
 responseSchema.plugin(idvalidator)
 
 responseSchema.index({ query: 1, hidden: 1, accepted: 1, 'stats.score': 1,'stats.viewCount': 1 })
+
+var autoPopulate = function(next) {
+    this.populate('stats');
+    this.populate('user');
+    next();
+};
+  
+responseSchema.
+    pre('findOne', autoPopulate).
+    pre('find', autoPopulate);
 
 module.exports = mongoose.model('Response',responseSchema);

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 var idvalidator = require('mongoose-id-validator');
 
 const commentSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+    //_id: mongoose.Schema.Types.ObjectId,
     message:{
         type:String,
         maxLength:[140,'Message is longer than 140 characters.']
@@ -22,11 +22,12 @@ const commentSchema = mongoose.Schema({
     response:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Response'
-    },
-    comment:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Comment'
     }
+    // ,
+    // comment:{
+    //     type:mongoose.Schema.Types.ObjectId,
+    //     ref:'Comment'
+    // }
 });
 
 commentSchema.plugin(idvalidator)
@@ -45,8 +46,8 @@ function hasOneReference(comment){
         count++
     if(comment.response!==undefined)
         count++
-    if(comment.comment!==undefined)
-        count++
+    // if(comment.comment!==undefined)
+    //     count++
     return count === 1
 }
 

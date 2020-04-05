@@ -17,6 +17,8 @@ async function createComment(comment){
     return comment
 }
 
+async function getComments(comment){
+    return await Comment.find(comment)
+}
 
-
-module.exports={createComment}
+module.exports={createComment,getComments}

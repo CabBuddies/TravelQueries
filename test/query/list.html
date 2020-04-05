@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Posted By</th>
+            <th>Posted On</th>
+            <th>Tags</th>
+            <th>Views</th>
+            <th>Responses</th>
+            <th>Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+    </tbody>
+</table>
+
+<script>
+    $.ajax({
+            url: '/query/list',
+            type: 'GET',
+            dataType: 'json',
+            headers: {
+                'Authorization': 'Basic '+localStorage.getItem("accessToken")
+            },
+            contentType: 'application/json; charset=utf-8',
+            success: function (result) {
+                // CallBack(result);
+                console.log(result)
+                loadQueries(result);
+                //$("pre").html(JSON.stringify(result, undefined, 2));
+            },
+            error: function (error) {
+                
+            }
+        });
+    function loadQueries(queries){
+        for(let i=0;i<queries.length;i++){
+            loadQuery(queries[i])
+        }
+    }
+    function loadQuery(query){
+        $("tbody").append(
+            "<tr>"
+                +"<td><a href=\"javascript:openQuery('"+query._id+"')\">"+query._id+"</a></td>"
+                +"<td>"+query.title+"</td>"
+                +"<td>"+query.user.email+"</td>"
+                +"<td>"+query.postedOn+"</td>"
+                +"<td>"+JSON.stringify(query.tags)+"</td>"
+                +"<td>"+query.stats.viewCount+"</td>"
+                +"<td>"+query.stats.responseCount+"</td>"
+                +"<td>"+query.stats.score+"</td>"
+            +"</tr>"
+        )
+    }    
+    
+    function openQuery(queryId){
+        localStorage.setItem("queryId",queryId);
+        window.open('/test/query/read');
+    }
+</script>
+</body>
+</html>

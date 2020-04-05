@@ -18,6 +18,7 @@
     "mongoose": "^5.9.6",
     "mongoose-id-validator": "^0.5.4",
     "mongoose-paginate": "^5.0.3",
-    "node-rest-client": "^3.1.0"
+    "node-rest-client": "^3.1.0",
+    "path": "^0.12.7"
   }
 }

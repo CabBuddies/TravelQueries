@@ -1,26 +1,17 @@
-const Query = require('../../models/query');
 let router = require('express').Router();
 const authToken = require('../../../utils/auth-token');
 const QueryManager = require('../../manager/query-manager');
 
-const Response = require('../../models/response');
-const Tag = require('../../models/tag');
-
-/*
-POST with JSON body
-{
-    email:'email@domain.com',
-    password:'strongpassword',
-    firstName:'John',
-    lastName:'Doe',
-    phoneNumber:'9876543210'
-}
-*/
 router.post('/create', authToken.authenticateToken ,async (req,res)=>{
     const { title, body, tags } = req.body;
     console.log(req.body)
     const user = req.val
-    
+    console.log(user)
+    if(user == null){
+        res.send({error:'No User'})
+        return
+    }
+
     const query = await QueryManager.createQuery({
         title,
         body,
@@ -33,46 +24,19 @@ router.post('/create', authToken.authenticateToken ,async (req,res)=>{
     res.send(query)
 })
 
+router.get('/list', async (req,res)=>{
+    res.send(await QueryManager.listQueries())
+})
 
-/*
-POST with JSON body
-{
-    email:'email@domain.com',
-    password:'strongpassword'
-}
-
-returns
-{
-    accessToken:'ACCESS_TOKEN',
-    refreshToken:'REFRESH_TOKEN'
-}
-*/
 router.get('/read', async (req,res)=>{
-    let results = await Query.find({})
-    for(let i=0;i<results.length;i++){
-        let proResult = {
-            _id:results[i]._id,
-            title:results[i].title,
-            body:results[i].body,
-            //tags:results[i].tags,
-            tags:[],
-            responses:[]
-        };
-        for(let j=0;j<results[i].tags.length;j++){
-            console.log(results[i].tags[j])
-            proResult.tags.push({
-                word:(await Tag.findById(results[i].tags[j]._id)).word
-            });
-        }
-        for(let j=0;j<results[i].responses.length;j++){
-            console.log(results[i].responses[j])
-            proResult.responses.push({
-                body:(await Response.findById(results[i].responses[j]._id)).body
-            });
-        }
-        results[i] = proResult;
-    }
-    res.send(results)
+    const { queryId } = req.query;
+    console.log('/query/read called')
+    let query = await QueryManager.viewQuery(queryId)
+    
+    console.log('>.........')
+    console.log(query.responses[0].body)
+    console.log('>.........')
+    res.send(query)
 })
 
 

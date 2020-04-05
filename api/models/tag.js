@@ -5,7 +5,8 @@ const tagSchema = mongoose.Schema({
     _id:{
         type:String,
         minLength:2,
-        maxLength:64
+        maxLength:64,
+        trim:true
     },
     queries:[{
         type:mongoose.Schema.Types.ObjectId,

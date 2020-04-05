@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+
+<form sample-action="/query/create" method="post" id="form">
+    <input name="title" placeholder="title"><br>
+    <textarea name="body"></textarea>
+    <input name="tags" placeholder="Comma Seperated Tags"><br>
+    <input type="submit">
+</form>
+
+<pre></pre>
+
+<script>
+
+    $('#form').on('submit', function(e) { //use on if jQuery 1.7+
+        e.preventDefault();  //prevent form from submitting
+        var data = $("#form :input").serializeArray();
+        var action = $("#form").attr("sample-action");
+        console.log(data); //use the console for debugging, F12 in Chrome, not alerts
+        submitData(action,data);
+    });
+
+    function submitData(action,data){
+        var jdata={}
+        for(let i=0;i<data.length;i++){
+            jdata[data[i].name]=data[i].value;
+        }
+        jdata.tags = jdata.tags.split(',')
+        console.log(jdata);
+
+        $.ajax({
+            url: action,
+            type: 'POST',
+            dataType: 'json',
+            data:JSON.stringify(jdata),
+            headers: {
+                'Authorization': 'Basic '+localStorage.getItem("accessToken")
+            },
+            contentType: 'application/json; charset=utf-8',
+            success: function (result) {
+                // CallBack(result);
+                console.log(result)
+                $("pre").html(JSON.stringify(result, undefined, 2));
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        });
+        
+    } 
+
+</script>
+</body>
+</html>

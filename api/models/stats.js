@@ -2,8 +2,13 @@ const mongoose = require('mongoose');
 var idvalidator = require('mongoose-id-validator');
 
 const statsSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+    //_id: mongoose.Schema.Types.ObjectId,
+    //query props
     viewCount:{
+        type:Number,
+        default:0
+    },
+    responseCount:{
         type:Number,
         default:0
     },
@@ -11,6 +16,7 @@ const statsSchema = mongoose.Schema({
         type:Number,
         default:0
     },
+    //query and response props
     upVoteCount:{
         type:Number,
         default:0
@@ -31,4 +37,4 @@ const statsSchema = mongoose.Schema({
 
 statsSchema.plugin(idvalidator)
 
-module.exports = mongoose.model('Stats',statsSchema);
+module.exports = statsSchema;

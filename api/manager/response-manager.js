@@ -25,10 +25,13 @@ async function createResponse(response){
 async function viewResponse(responseId){
     return await Response.findById(responseId)
 }
+async function viewResponses(queryId){
+    return await Response.find({query:queryId}).lean()
+}
 
 async function updateStats(opinion,added){
     console.log(opinion.response+'needs stats update')
 
 }
 
-module.exports={createResponse,viewResponse,updateStats}
+module.exports={createResponse,viewResponse,viewResponses,updateStats}

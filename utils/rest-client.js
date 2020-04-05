@@ -15,7 +15,7 @@ function validateJwtExt(jwt) {
             headers
         };
          
-        client.get("http://localhost:3000/jwt/decode", args,(data,response)=>{
+        client.get("https://cabbuddies-um.herokuapp.com/jwt/decode", args,(data,response)=>{
             resolve(data)
         });
     })

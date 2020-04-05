@@ -1,0 +1,9 @@
+<a href="/test/query/list">query list</a>
+<a href="/test/query/create">query create</a>
+<button onclick="setAccessToken()">Set Access Token</button>
+<script>
+function setAccessToken(){
+    let accessToken = prompt('Access Token','');
+    localStorage.setItem('accessToken',accessToken);
+}
+</script>
