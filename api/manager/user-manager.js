@@ -4,7 +4,7 @@ const User = require('../models/user');
 
 async function findOrCreateUserByJwt(user){
     //trying to find tq_user based on userId in jwt
-    let resuser = await User.findOne({userId:user.userId});
+    let resuser = await User.findById(user._id)
     //creating tq_user if above statement resulted in null
     if(resuser == null){
         //return a newly created user
