@@ -4,8 +4,10 @@ const QueryManager = require('../../manager/query-manager');
 
 router.post('/create', authToken.authenticateToken ,async (req,res)=>{
     const { title, body, tags } = req.body;
+    console.log('==========>QueryRouterReqBody')
     console.log(req.body)
     const user = req.val
+    console.log('==========>QueryRouterUser')
     console.log(user)
     if(user == null){
         res.send({error:'No User'})
@@ -19,6 +21,7 @@ router.post('/create', authToken.authenticateToken ,async (req,res)=>{
         user
     });
 
+    console.log('==========>QueryRouterQuery')
     console.log(query)
 
     res.send(query)
