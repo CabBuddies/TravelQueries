@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-var idvalidator = require('mongoose-id-validator');
+//var idvalidator = require('mongoose-id-validator');
 
 const statsSchema = mongoose.Schema({
     //_id: mongoose.Schema.Types.ObjectId,
@@ -35,6 +35,6 @@ const statsSchema = mongoose.Schema({
     }
 });
 
-statsSchema.plugin(idvalidator)
+//statsSchema.plugin(idvalidator)
 
 module.exports = statsSchema;
