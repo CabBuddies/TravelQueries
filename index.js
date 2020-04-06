@@ -25,9 +25,9 @@ app.get('/',(req,res)=>{
     res.send('happy')
 })
 
-app.get('/decode', require('./utils/auth-token').authenticateToken,(req,res)=>{
-    res.send(req.val)
-})
+// app.get('/decode', require('./utils/auth-token').authenticateToken,(req,res)=>{
+//     res.send(req.val)
+// })
 
 app.use('/query',require('./api/routes/query'))
 
