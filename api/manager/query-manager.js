@@ -4,7 +4,6 @@ const Query = require('../models/query');
 
 const UserManager = require('./user-manager');
 const ResponseManager = require('./response-manager');
-const StatsManager = require('./stats-manager');
 const TagManager = require('./tag-manager');
 const CommentManager = require('./comment-manager');
 
@@ -13,7 +12,7 @@ async function createQuery(query){
     query.user = await UserManager.findOrCreateUserByJwt(query.user);
 
     //create empty stats
-    query.stats = await StatsManager.newStats()
+    //query.stats = await StatsManager.newStats()
     //create query
     query = await Query.create(query).catch(err=>console.log(err))
     //check if query creation returned null
