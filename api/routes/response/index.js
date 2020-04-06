@@ -1,5 +1,5 @@
 let router = require('express').Router();
-const authToken = require('../../../utils/auth-token');
+const authToken = require('api-library-user-management/utils/auth-token');
 const ResponseManager = require('../../manager/response-manager');
 
 router.post('/create', authToken.authenticateToken ,async (req,res)=>{
