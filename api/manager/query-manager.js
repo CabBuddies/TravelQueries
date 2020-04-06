@@ -44,7 +44,7 @@ async function viewQuery(queryId){
         query.responses[index].comments = await CommentManager.getComments({response:query.responses[index]._id})
     }
 
-    StatsManager.updateViews(query.stats)
+    //StatsManager.updateViews(query.stats)
 
     return query
 }
