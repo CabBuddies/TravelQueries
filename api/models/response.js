@@ -17,7 +17,10 @@ const responseSchema = mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'Query'
     },
-    stats:statsSchema,
+    stats:{
+        type:statsSchema,
+        default: statsSchema
+    },
     hidden:{
         type:Boolean,
         default:false
