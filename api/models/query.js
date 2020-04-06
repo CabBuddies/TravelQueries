@@ -48,7 +48,7 @@ querySchema.index({ active:1, 'postedOn': 1,'stats.score': 1 })
 
 var autoPopulate = function(next) {
     console.log('populating')
-    this.populate('stats');
+    //this.populate('stats');
     this.populate('user');
     next();
 };

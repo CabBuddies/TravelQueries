@@ -44,7 +44,7 @@ responseSchema.plugin(idvalidator)
 responseSchema.index({ query: 1, hidden: 1, accepted: 1, 'stats.score': 1,'stats.viewCount': 1 })
 
 var autoPopulate = function(next) {
-    this.populate('stats');
+    //this.populate('stats');
     this.populate('user');
     next();
 };
