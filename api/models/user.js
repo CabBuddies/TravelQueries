@@ -38,6 +38,7 @@ userSchema.plugin(idvalidator)
 
 userSchema.post('save', function(error, doc, next) {
     if (error.name === 'MongoError' && error.code === 11000) {
+        console.log(error)
         next(new Error('Email already exists.'));
     } else {
         next(error);
