@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 var idvalidator = require('mongoose-id-validator');
 
 const userSchema = mongoose.Schema({
-    id: {
-        type:mongoose.Schema.Types.ObjectId,
-        auto:false
-    },
+    // id: {
+    //     type:mongoose.Schema.Types.ObjectId,
+    //     auto:false
+    // },
     email:{
         type:String,
         trim: true,
@@ -32,7 +32,7 @@ const userSchema = mongoose.Schema({
     }
 });
 
-userSchema.index({id:1},{unique:true})
+userSchema.index({email:1},{unique:true})
 
 userSchema.plugin(idvalidator)
 
