@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 
-const Comment = require('../models/comment');
+const Comment = require('../../models/comment');
 
-const UserManager = require('./user-manager');
-const QueryManager = require('./query-manager');
+const UserManager = require('../user-manager');
 
 async function createComment(comment){
     //get or create user associated with comment
@@ -17,8 +16,4 @@ async function createComment(comment){
     return comment
 }
 
-async function getComments(comment){
-    return await Comment.find(comment)
-}
-
-module.exports={createComment,getComments}
+module.exports={createComment}

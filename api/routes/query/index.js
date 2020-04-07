@@ -1,6 +1,6 @@
 let router = require('express').Router();
 const authToken = require('api-library-user-management/utils/auth-token');
-const QueryManager = require('../../manager/query-manager');
+const QueryManager = require('../../manager/query/query-manager');
 
 router.post('/create', authToken.authenticateToken ,async (req,res)=>{
     const { title, body, tags } = req.body;
@@ -34,11 +34,12 @@ router.get('/list', async (req,res)=>{
 router.get('/read', async (req,res)=>{
     const { queryId } = req.query;
     console.log('/query/read called')
+
     let query = await QueryManager.viewQuery(queryId)
     
-    console.log('>.........')
-    console.log(query.responses[0].body)
-    console.log('>.........')
+    // console.log('>.........')
+    // console.log(query.responses[0].body)
+    // console.log('>.........')
     res.send(query)
 })
 

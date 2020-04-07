@@ -1,6 +1,6 @@
 let router = require('express').Router();
 const authToken = require('api-library-user-management/utils/auth-token');
-const CommentManager = require('../../manager/comment-manager');
+const CommentManager = require('../../manager/comment/comment-manager');
 
 router.post('/create', authToken.authenticateToken ,async (req,res)=>{
     const { message,query,response/*,comment*/ } = req.body;

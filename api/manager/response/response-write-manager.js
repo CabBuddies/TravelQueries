@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-const Response = require('../models/response');
+const Response = require('../../models/response');
 
-const UserManager = require('./user-manager');
-const QueryManager = require('./query-manager');
+const UserManager = require('../user-manager');
+const QueryWriteManager = require('../query/query-write-manager');
 
 async function createResponse(response){
     //get or create user associated with response
@@ -16,16 +16,12 @@ async function createResponse(response){
     if(response==null)
         return null
     //add response to query
-    await QueryManager.addResponseToQuery(response)
+    
+    console.log(QueryWriteManager)
+
+    await QueryWriteManager.addResponseToQuery(response).catch(err=>console.log(err))
     //return response
     return response
-}
-
-async function viewResponse(responseId){
-    return await Response.findById(responseId)
-}
-async function viewResponses(queryId){
-    return await Response.find({query:queryId}).lean()
 }
 
 async function updateStats(opinion,added){
@@ -33,4 +29,4 @@ async function updateStats(opinion,added){
 
 }
 
-module.exports={createResponse,viewResponse,viewResponses,updateStats}
+module.exports={createResponse,updateStats}
