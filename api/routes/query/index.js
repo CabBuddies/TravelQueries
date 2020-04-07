@@ -33,7 +33,7 @@ router.get('/list', async (req,res)=>{
 
 router.get('/read', async (req,res)=>{
     const { queryId } = req.query;
-    console.log('/query/read called')
+    console.log('/query/read called '+queryId)
 
     let query = await QueryManager.viewQuery(queryId)
     
