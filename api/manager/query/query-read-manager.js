@@ -6,7 +6,7 @@ const CommentReadManager = require('../comment/comment-read-manager');
 
 
 async function listQueries(){
-    return await Query.find({}).lean()
+    return await Query.find({active:true}).lean()
 }
 
 async function viewQuery(queryId){

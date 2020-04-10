@@ -44,4 +44,73 @@ router.get('/read', async (req,res)=>{
 })
 
 
+router.put('/update', authToken.authenticateToken , QueryManager.isCreator , async (req,res)=>{
+    const { _id, title, body, tags } = req.body;
+    console.log('==========>QueryRouterReqBody')
+    console.log(req.body)
+    const user = req.val
+    console.log('==========>QueryRouterUser')
+    console.log(user)
+    if(user == null){
+        res.send({error:'No User'})
+        return
+    }
+
+    const query = await QueryManager.updateQuery({
+        _id,
+        title,
+        body,
+        tags
+    });
+
+    console.log('==========>QueryRouterQuery')
+    console.log(query)
+
+    res.send(query)
+})
+
+router.put('/inactivate', authToken.authenticateToken , QueryManager.isCreator , async (req,res)=>{
+    const { _id } = req.body;
+    console.log('==========>QueryRouterReqBody')
+    console.log(req.body)
+    const user = req.val
+    console.log('==========>QueryRouterUser')
+    console.log(user)
+    if(user == null){
+        res.send({error:'No User'})
+        return
+    }
+
+    const query = await QueryManager.activateQuery({
+        _id
+    },false);
+
+    console.log('==========>QueryRouterQuery')
+    console.log(query)
+
+    res.send(query)
+})
+
+router.put('/activate', authToken.authenticateToken , QueryManager.isCreator , async (req,res)=>{
+    const { _id } = req.body;
+    console.log('==========>QueryRouterReqBody')
+    console.log(req.body)
+    const user = req.val
+    console.log('==========>QueryRouterUser')
+    console.log(user)
+    if(user == null){
+        res.send({error:'No User'})
+        return
+    }
+
+    const query = await QueryManager.activateQuery({
+        _id
+    },true);
+
+    console.log('==========>QueryRouterQuery')
+    console.log(query)
+
+    res.send(query)
+})
+
 module.exports = router

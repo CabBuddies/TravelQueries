@@ -1,5 +1,6 @@
 const QueryReadManager = require('./query-read-manager');
 const QueryWriteManager = require('./query-write-manager');
+const QueryAccessManager = require('./query-access-manager');
 
 async function createQuery(query){
     return await QueryWriteManager.createQuery(query)
@@ -21,4 +22,16 @@ async function updateStats(opinion,added){
     return await QueryWriteManager.updateStats(opinion,added)
 }
 
-module.exports={createQuery,viewQuery,addResponseToQuery,updateStats,listQueries}
+async function updateQuery(query){
+    return await QueryWriteManager.updateQuery(query)
+}
+
+async function isCreator(req,res,next){
+    await QueryAccessManager.isCreator(req,res,next)
+}
+
+async function activateQuery(query,active){
+    return await QueryWriteManager.activateQuery(query,active)
+}
+
+module.exports={createQuery,viewQuery,addResponseToQuery,updateStats,listQueries,updateQuery,isCreator,activateQuery}

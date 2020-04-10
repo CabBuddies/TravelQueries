@@ -9,6 +9,8 @@ async function createQuery(query){
     //get or create user associated with query
     query.user = await UserManager.findOrCreateUserByJwt(query.user);
 
+    //query = packQueryForCreation(query)
+
     //create empty stats
     //query.stats = await StatsManager.newStats()
     //create query
@@ -34,4 +36,26 @@ async function updateViews(queryId){
     await Query.updateOne({_id:queryId},{$inc:{'stats.viewCount':1}})
 }
 
-module.exports={createQuery,updateViews,addResponseToQuery,updateStats}
+async function updateQuery(query){
+    //query = packQueryForUpdation(query)
+    query.lastUpdatedOn = new Date();
+    return await Query.findOneAndUpdate({_id:query._id},{$set:query})
+}
+
+async function activateQuery(query,active){
+    //query = packQueryForUpdation(query)
+    query.lastUpdatedOn = new Date();
+    query.active = active
+    return await Query.findOneAndUpdate({_id:query._id},{$set:query})
+}
+// function packQueryForCreation(query){
+//     const {title,body,tags,user} = query
+//     return {title,body,tags,user}
+// }
+
+// function packQueryForUpdation(query){
+//     const {_id,title,body,tags,user} = query
+//     return {_id,title,body,tags,user}
+// }
+
+module.exports={createQuery,updateViews,addResponseToQuery,updateStats,updateQuery,activateQuery}
