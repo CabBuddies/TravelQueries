@@ -7,11 +7,13 @@ const querySchema = mongoose.Schema({
     title:{
         type:String,
         minLength:5,
-        maxLength:140
+        maxLength:140,
+        required: 'Title is required'
     },
     body:{
         type:String,
-        maxLength:500
+        maxLength:500,
+        required: 'Body is required'
     },
     user:{
         type:mongoose.Schema.Types.ObjectId,

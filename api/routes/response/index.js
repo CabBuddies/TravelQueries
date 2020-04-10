@@ -4,9 +4,15 @@ const ResponseManager = require('../../manager/response/response-manager');
 
 router.post('/create', authToken.authenticateToken ,async (req,res)=>{
     const { body,query } = req.body;
+    console.log('==========>ResponseRouterReqBody')
     console.log(req.body)
     const user = req.val
-    
+    console.log('==========>ResponseRouterUser')
+    console.log(user)
+    if(user == null){
+        res.send({error:'No User'})
+        return
+    }
     const response = await ResponseManager.createResponse({
         query,
         body,

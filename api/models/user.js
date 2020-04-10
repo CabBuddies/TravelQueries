@@ -10,15 +10,18 @@ const userSchema = mongoose.Schema({
         type:String,
         trim: true,
         lowercase: true,
-        unique: true
+        unique: true,
+        required: 'Email is required'
     },
     firstName:{
         type:String,
-        trim: true
+        trim: true,
+        required: 'First Name is required'
     },
     lastName:{
         type:String,
-        trim: true
+        trim: true,
+        required: 'Last Name is required'
     },
     phoneNumber:{
         type:String,

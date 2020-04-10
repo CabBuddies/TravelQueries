@@ -14,7 +14,11 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb+srv://ikmv:ikmv@cluster0-hnnbh.mongodb.net/TravelQueries?retryWrites=true&w=majority',{
+let dburl = 'mongodb+srv://ikmv:ikmv@cluster0-hnnbh.mongodb.net/TravelQueries?retryWrites=true&w=majority'
+
+//dburl = 'mongodb://ikmv:ikmv@localhost/TravelQueries'
+
+mongoose.connect(dburl,{
     useNewUrlParser:true,
     useUnifiedTopology: true
 })

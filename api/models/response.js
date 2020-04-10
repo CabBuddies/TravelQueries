@@ -7,15 +7,18 @@ const responseSchema = mongoose.Schema({
     body:{
         type:String,
         minLength:1,
-        maxLength:500
+        maxLength:500,
+        required: 'Body is required'
     },
     user:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'User'
+        ref:'User',
+        required: 'User is required'
     },
     query:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'Query'
+        ref:'Query',
+        required: 'Query is required'
     },
     stats:{
         type:statsSchema,
