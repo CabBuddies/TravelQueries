@@ -3,12 +3,12 @@ const authToken = require('api-library-user-management/utils/auth-token');
 const CommentManager = require('../../manager/comment/comment-manager');
 
 router.post('/create', authToken.authenticateToken ,async (req,res)=>{
-    const { message,query,response/*,comment*/ } = req.body;
+    const { body,query,response/*,comment*/ } = req.body;
     console.log(req.body)
     const user = req.val
     
     const comment = await CommentManager.createComment({
-        message,
+        body,
         query,
         response,
         //comment,

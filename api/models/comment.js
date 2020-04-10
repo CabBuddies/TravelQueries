@@ -3,9 +3,9 @@ var idvalidator = require('mongoose-id-validator');
 
 const commentSchema = mongoose.Schema({
     //_id: mongoose.Schema.Types.ObjectId,
-    message:{
+    body:{
         type:String,
-        maxLength:[140,'Message is longer than 140 characters.']
+        maxLength:[140,'Body is longer than 140 characters.']
     },
     user:{
         type:mongoose.Schema.Types.ObjectId,
