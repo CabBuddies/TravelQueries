@@ -69,30 +69,8 @@ router.put('/update', authToken.authenticateToken , QueryManager.isCreator , asy
     res.send(query)
 })
 
-router.put('/inactivate', authToken.authenticateToken , QueryManager.isCreator , async (req,res)=>{
-    const { _id } = req.body;
-    console.log('==========>QueryRouterReqBody')
-    console.log(req.body)
-    const user = req.val
-    console.log('==========>QueryRouterUser')
-    console.log(user)
-    if(user == null){
-        res.send({error:'No User'})
-        return
-    }
-
-    const query = await QueryManager.activateQuery({
-        _id
-    },false);
-
-    console.log('==========>QueryRouterQuery')
-    console.log(query)
-
-    res.send(query)
-})
-
 router.put('/activate', authToken.authenticateToken , QueryManager.isCreator , async (req,res)=>{
-    const { _id } = req.body;
+    const { _id , active } = req.body;
     console.log('==========>QueryRouterReqBody')
     console.log(req.body)
     const user = req.val
@@ -105,7 +83,7 @@ router.put('/activate', authToken.authenticateToken , QueryManager.isCreator , a
 
     const query = await QueryManager.activateQuery({
         _id
-    },true);
+    },active);
 
     console.log('==========>QueryRouterQuery')
     console.log(query)
