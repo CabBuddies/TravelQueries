@@ -51,4 +51,15 @@ function hasOneReference(comment){
     return count === 1
 }
 
+var autoPopulate = function(next) {
+    console.log('populating')
+    //this.populate('stats');
+    this.populate('user');
+    next();
+};
+  
+commentSchema.
+    pre('findOne', autoPopulate).
+    pre('find', autoPopulate);
+
 module.exports = mongoose.model('Comment',commentSchema);
