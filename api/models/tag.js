@@ -10,7 +10,8 @@ const tagSchema = mongoose.Schema({
     },
     queries:[{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'Query'
+        ref:'Query',
+        unique: true
     }],
     count:{
         type:Number,
