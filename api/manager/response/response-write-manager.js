@@ -29,4 +29,18 @@ async function updateStats(opinion,added){
 
 }
 
-module.exports={createResponse,updateStats}
+async function updateResponse(response){
+    //query = packQueryForUpdation(query)
+    response.lastUpdatedOn = new Date();
+    
+    return await Response.findOneAndUpdate({_id:response._id},{$set:response})
+}
+
+async function hiddenResponse(response,hidden){
+    //query = packQueryForUpdation(query)
+    response.lastUpdatedOn = new Date();
+    response.hidden = hidden
+    return await Response.findOneAndUpdate({_id:response._id},{$set:response})
+}
+
+module.exports={createResponse,updateStats,updateResponse,hiddenResponse}
