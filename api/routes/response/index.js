@@ -29,7 +29,7 @@ router.get('/list', async (req,res)=>{
 })
 
 router.get('/read', async (req,res)=>{
-    res.send(await ResponseManager.viewResponse(req.body.responseId))
+    res.send(await ResponseManager.viewResponse(req.query.responseId))
 })
 
 router.put('/update', authToken.authenticateToken , ResponseManager.isCreator ,async (req,res)=>{
