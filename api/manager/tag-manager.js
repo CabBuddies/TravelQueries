@@ -28,7 +28,7 @@ async function removeQueryFromTags(query){
                 _id:tag
             },
             {
-                $pull:{queries:{_id:query._id}}
+                $pull:{queries:{_id:query._id.toString()}}
             },
             { safe: true }
         )
