@@ -6,7 +6,7 @@ async function viewResponse(responseId){
     return await Response.findById(responseId)
 }
 async function viewResponses(queryId){
-    return await Response.find({query:queryId}).lean()
+    return await Response.find({query:queryId,hidden:false}).lean()
 }
 
 module.exports={viewResponse,viewResponses}
