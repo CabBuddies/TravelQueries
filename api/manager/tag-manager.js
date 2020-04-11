@@ -23,12 +23,12 @@ async function addQueryToTags(query){
 async function removeQueryFromTags(query){
     for (let index = 0; index < query.tags.length; index++) {
         const tag = query.tags[index];
-        await Tag.update(
+        await Tag.findOneAndUpdate(
             {
                 _id:tag
             },
             {
-                $pull:{queries:{_id:query._id.toString()}}
+                $pullAll:{queries:[query._id]}
             },
             { safe: true }
         )
