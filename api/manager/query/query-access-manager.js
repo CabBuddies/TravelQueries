@@ -14,6 +14,8 @@ async function isCreator(req, res, next) {
     if( query === null || query === undefined)
         return res.sendStatus(403)
 
+    //req.valQ = query
+
     next()
 }
 

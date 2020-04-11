@@ -11,6 +11,8 @@ async function createQuery(query){
 
     //query = packQueryForCreation(query)
 
+    query.tags.map(tag => tag.trim())
+
     //create empty stats
     //query.stats = await StatsManager.newStats()
     //create query
@@ -39,6 +41,11 @@ async function updateViews(queryId){
 async function updateQuery(query){
     //query = packQueryForUpdation(query)
     query.lastUpdatedOn = new Date();
+    query.tags.map(tag => tag.trim());
+    
+    //add query to tags
+    await TagManager.adjustQueryToTags(await Query.findById(query._id),query.tags)
+
     return await Query.findOneAndUpdate({_id:query._id},{$set:query})
 }
 
