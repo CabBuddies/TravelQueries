@@ -3,37 +3,35 @@ const mongoose = require('mongoose');
 const Tag = require('../models/tag');
 
 async function addQueryToTags(query){
-    //iterate through query tags
-    query.tags.forEach(async (tag)=>{
-        //find the query by word or create if not found and add this query to the list of queries
+    for (let index = 0; index < query.tags.length; index++) {
+        const tag = query.tags[index];
         await Tag.update(
-                {
-                    _id:tag
-                },
-                {
-                    $push:{queries:query},
-                    $set:{_id:tag.trim()}
-                },
-                {
-                    upsert:true
-                }
-            )
-    })
+            {
+                _id:tag
+            },
+            {
+                $push:{queries:query},
+                $set:{_id:tag.trim()}
+            },
+            {
+                upsert:true
+            }
+        )
+    }
 }
 
 async function removeQueryFromTags(query){
-    //iterate through query tags
-    query.tags.forEach(async (tag)=>{
-        //find the query by word or create if not found and add this query to the list of queries
+    for (let index = 0; index < query.tags.length; index++) {
+        const tag = query.tags[index];
         await Tag.update(
-                {
-                    _id:tag
-                },
-                {
-                    $pop:{queries:query}
-                }
-            )
-    })
+            {
+                _id:tag
+            },
+            {
+                $pop:{queries:query}
+            }
+        )
+    }
 }
 
 async function adjustQueryToTags(query,newTags){
