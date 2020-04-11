@@ -44,7 +44,7 @@ async function updateQuery(query){
     query.tags.map(tag => tag.trim());
     
     //add query to tags
-    await TagManager.adjustQueryToTags(await Query.findById(query._id),query.tags)
+    await TagManager.adjustQueryToTags(await Query.findById(query._id).lean(),query.tags)
 
     return await Query.findOneAndUpdate({_id:query._id},{$set:query})
 }
