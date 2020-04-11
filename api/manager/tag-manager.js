@@ -28,7 +28,7 @@ async function removeQueryFromTags(query){
                 _id:tag
             },
             {
-                $pop:{queries:query}
+                $pull:{queries:{$eq:query}}
             }
         )
     }
