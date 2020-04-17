@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const Opinion = require('../../models/opinion');
 
-const QueryManager = require('./query-manager');
+const QueryManager = require('../query/query-manager');
 
-const ResponseManager = require('./response-manager');
+const ResponseManager = require('../response/response-manager');
 
 /*
 
