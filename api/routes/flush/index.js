@@ -7,7 +7,7 @@ const ResponseManager = require('../../manager/response/response-manager')
 const TagManager = require('../../manager/tag-manager')
 const UserManager = require('../../manager/user-manager')
 
-router.get('/',authToken.authenticateToken, async (req,res)=>{
+router.get('/', async (req,res)=>{
     
     await UserManager.flushDatabase();
     await TagManager.flushDatabase();
