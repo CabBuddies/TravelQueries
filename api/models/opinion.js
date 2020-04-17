@@ -3,7 +3,7 @@ var idvalidator = require('mongoose-id-validator');
 
 const opinionSchema = mongoose.Schema({
     //_id: mongoose.Schema.Types.ObjectId,
-    message:{
+    body:{
         type:String,
         maxLength:[140,'Message is longer than 140 characters.']
     },
