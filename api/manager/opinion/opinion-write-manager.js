@@ -71,15 +71,26 @@ async function saveOpinion(opinion){
     returns false if opinion has a user and a opinionType and ( a query or response but not both )
 */
 function invalidFormat(opinion,full){
+    
+    console.log(opinion)
+    
+    console.log('checking for invalid format in opinion')
+
 
     if(full === (opinion._id!==undefined))
         return true
 
+    console.log('checking for user in opinion')
+
     if(opinion.user===undefined)
         return true
 
+    console.log('checking for opinionType in opinion')
+
     if(opinion.opinionType===undefined)
         return true
+
+    console.log('checking for query/response in opinion')
 
     let count = 0;
     if(opinion.query!==undefined)
