@@ -11,4 +11,8 @@ async function getComments(comment){
     return await CommentReadManager.getComments(comment)
 }
 
-module.exports={createComment,getComments}
+async function flushDatabase(){
+    await CommentWriteManager.flushDatabase();
+}
+
+module.exports={createComment,getComments,flushDatabase}

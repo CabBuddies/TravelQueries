@@ -34,4 +34,8 @@ async function activateQuery(query,active){
     return await QueryWriteManager.activateQuery(query,active)
 }
 
-module.exports={createQuery,viewQuery,addResponseToQuery,updateStats,listQueries,updateQuery,isCreator,activateQuery}
+async function flushDatabase(){
+    await QueryWriteManager.flushDatabase();
+}
+
+module.exports={createQuery,viewQuery,addResponseToQuery,updateStats,listQueries,updateQuery,isCreator,activateQuery,flushDatabase}

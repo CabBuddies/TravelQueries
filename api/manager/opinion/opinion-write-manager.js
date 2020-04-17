@@ -177,4 +177,9 @@ async function revertOpinion(opinion){
     return await unregisterOpinion(opinion)
 }
 
-module.exports={saveOpinion,revertOpinion}
+async function flushDatabase(){
+    if(require('../../utils/debug').canFlushDatabases())
+        await Opinion.deleteMany({})
+}
+
+module.exports={saveOpinion,revertOpinion,flushDatabase}

@@ -69,4 +69,9 @@ function arraysEqual(a, b) {
     return true;
 }
 
-module.exports={addQueryToTags,adjustQueryToTags}
+async function flushDatabase(){
+    if(require('../utils/debug').canFlushDatabases())
+        await Tag.deleteMany({})
+}
+
+module.exports={addQueryToTags,adjustQueryToTags,flushDatabase}

@@ -10,4 +10,8 @@ async function revertOpinion(opinion){
     return await OpinionWriteManager.revertOpinion(opinion);
 }
 
-module.exports={saveOpinion,revertOpinion}
+async function flushDatabase(){
+    await OpinionWriteManager.flushDatabase();
+}
+
+module.exports={saveOpinion,revertOpinion,flushDatabase}

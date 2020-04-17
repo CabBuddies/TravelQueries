@@ -41,5 +41,7 @@ app.use('/comment',require('./api/routes/comment'))
 
 app.use('/opinion',require('./api/routes/opinion'))
 
+app.use('/flush',require('./api/routes/flush'))
+
 app.use('/test',require('./test'))
 //console.log(app._router.stack)

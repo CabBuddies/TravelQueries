@@ -33,4 +33,8 @@ async function hiddenResponse(response,hidden){
     return await ResponseWriteManager.hiddenResponse(response,hidden)
 }
 
-module.exports={createResponse,viewResponse,viewResponses,updateStats,isCreator,updateResponse,hiddenResponse}
+async function flushDatabase(){
+    await ResponseWriteManager.flushDatabase();
+}
+
+module.exports={createResponse,viewResponse,viewResponses,updateStats,isCreator,updateResponse,hiddenResponse,flushDatabase}

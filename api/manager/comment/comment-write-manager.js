@@ -16,4 +16,9 @@ async function createComment(comment){
     return comment
 }
 
-module.exports={createComment}
+async function flushDatabase(){
+    if(require('../../utils/debug').canFlushDatabases())
+        await Comment.deleteMany({})
+}
+
+module.exports={createComment,flushDatabase}

@@ -53,4 +53,9 @@ async function hiddenResponse(response,hidden){
     return await Response.findOneAndUpdate({_id:response._id},{$set:response})
 }
 
-module.exports={createResponse,updateStats,updateResponse,hiddenResponse}
+async function flushDatabase(){
+    if(require('../../utils/debug').canFlushDatabases())
+        await Response.deleteMany({})
+}
+
+module.exports={createResponse,updateStats,updateResponse,hiddenResponse,flushDatabase}

@@ -22,4 +22,9 @@ async function findOrCreateUserByJwt(user){
     
 }
 
-module.exports={findOrCreateUserByJwt}
+async function flushDatabase(){
+    if(require('../utils/debug').canFlushDatabases())
+        await User.deleteMany({})
+}
+
+module.exports={findOrCreateUserByJwt,flushDatabase}

@@ -75,4 +75,9 @@ async function activateQuery(query,active){
 //     return {_id,title,body,tags,user}
 // }
 
-module.exports={createQuery,updateViews,addResponseToQuery,updateStats,updateQuery,activateQuery}
+async function flushDatabase(){
+    if(require('../../utils/debug').canFlushDatabases())
+        await Query.deleteMany({})
+}
+
+module.exports={createQuery,updateViews,addResponseToQuery,updateStats,updateQuery,activateQuery,flushDatabase}
