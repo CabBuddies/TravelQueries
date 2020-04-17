@@ -32,6 +32,16 @@ async function addResponseToQuery(response){
 
 async function updateStats(opinion,added){
     console.log(opinion.query+'needs stats update')
+    let inc = added ? 1 : -1;
+    let prop = {}
+    switch(opinion.opinionType){
+        case "Follow":prop={'stats.followCount':inc};break;
+        case "UpVote":prop={'stats.upVoteCount':inc};break;
+        case "DownVote":prop={'stats.downVoteCount':inc};break;
+        case "SpamReport":prop={'stats.spamReportCount':inc};break;
+        default : return;
+    }
+    await Query.updateOne({_id:opinion.query},{$inc:prop})
 }
 
 async function updateViews(queryId){
