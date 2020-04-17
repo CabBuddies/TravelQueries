@@ -36,7 +36,7 @@ async function updateStats(opinion,added){
         case "SpamReport":prop={'stats.spamReportCount':inc};break;
         default : return;
     }
-    await Query.updateOne({_id:opinion.response},{$inc:prop})
+    await Response.updateOne({_id:opinion.response},{$inc:prop})
 }
 
 async function updateResponse(response){
