@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Opinion = require('../models/opinion');
+const Opinion = require('../../models/opinion');
 
 const QueryManager = require('./query-manager');
 
