@@ -6,6 +6,7 @@ const QueryManager = require('../../manager/query/query-manager')
 const ResponseManager = require('../../manager/response/response-manager')
 const TagManager = require('../../manager/tag-manager')
 const UserManager = require('../../manager/user-manager')
+const JWT = require('api-library-user-management/model/jwt')
 
 router.get('/', async (req,res)=>{
     
@@ -15,7 +16,10 @@ router.get('/', async (req,res)=>{
     await QueryManager.flushDatabase();
     await OpinionManager.flushDatabase();
     await CommentManager.flushDatabase();
-
+    
+    if(require('../../utils/debug').canFlushDatabases())
+        await JWT.deleteMany();
+    
     res.send({success:'OK'})
 
 })
