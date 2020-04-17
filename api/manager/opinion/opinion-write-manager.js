@@ -138,7 +138,7 @@ async function registerOpinion(opinion){
     //return null if yes insert resulted in null
     if(opinion===null)
         return null
-    opinion = opinion.lean();
+    //opinion = opinion.lean();
     reportForStatsUpdate(opinion,true)
 
     return opinion
