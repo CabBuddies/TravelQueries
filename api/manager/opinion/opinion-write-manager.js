@@ -114,11 +114,13 @@ function contradictingOpinion(prevOpinion,opinion){
 */
 async function registerOpinion(opinion){
     //push opinion into database
+    console.log(opinion)
     opinion = await Opinion.create(opinion).catch((err)=>console.log(err))
+    console.log(opinion)
     //return null if yes insert resulted in null
     if(opinion===null)
         return null
-    
+    opinion = opinion.lean();
     reportForStatsUpdate(opinion,true)
 
     return opinion

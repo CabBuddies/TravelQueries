@@ -6,14 +6,17 @@ router.post('/create', authToken.authenticateToken ,async (req,res)=>{
     const { body,query,response,opinionType } = req.body;
     console.log(req.body)
     const user = req.val
-
-    const opinion = await OpinionManager.saveOpinion({
+    let opinion = {
         body,
         query,
         response,
         opinionType,
         user
-    })
+    };
+    
+    console.log(opinion)
+
+    opinion = await OpinionManager.saveOpinion(opinion)
 
     console.log(opinion)
 

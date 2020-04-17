@@ -9,10 +9,12 @@ const opinionSchema = mongoose.Schema({
     },
     opinionType:{
         type: String,
+        required: 'Opinion Type is required',
         enum: ['Follow', 'UpVote','DownVote','SpamReport']
     },
     user:{
         type:mongoose.Schema.Types.ObjectId,
+        required: 'User is required',
         ref:'User'
     },
     postedOn:{ 
