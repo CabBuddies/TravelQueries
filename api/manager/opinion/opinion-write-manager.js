@@ -73,9 +73,16 @@ async function saveOpinion(opinion){
 function invalidFormat(opinion,full){
     
     console.log(opinion)
-    
+
     console.log('checking for invalid format in opinion')
 
+    if(full){
+        if(opinion._id===undefined)
+            return true
+    }else{
+        if(opinion._id!==undefined)
+            return true
+    }
 
     if(full === (opinion._id!==undefined))
         return true
