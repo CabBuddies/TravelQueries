@@ -49,6 +49,7 @@ async function saveOpinion(opinion){
                 contradicting opinion and allowing the new opinion to be preserved.
             */
             if(sameOpinion(prevOpinion,opinion)){
+                await unregisterOpinion(prevOpinion)
                 return null
             }else if(contradictingOpinion(prevOpinion,opinion)){
                 unregisterOpinion(prevOpinion)
