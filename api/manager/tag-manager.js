@@ -19,7 +19,7 @@ async function addQueryToTags(query){
                 }
             )
         } catch (error) {
-            
+            console.log(error)
         }
     }
 }
@@ -38,7 +38,7 @@ async function removeQueryFromTags(query){
                 { safe: true }
             )
         } catch (error) {
-            
+            console.log(error)
         }
     }
 }
