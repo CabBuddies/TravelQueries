@@ -31,10 +31,11 @@ router.get('/list', async (req,res)=>{
     res.send(await QueryManager.listQueries())
 })
 
-router.get('/read', async (req,res)=>{
+router.get('/read',authToken.optAuthenticateToken, async (req,res)=>{
+
     const { queryId } = req.query;
     console.log('/query/read called '+queryId)
-
+    console.log(req.val)
     let query = await QueryManager.viewQuery(queryId,req.val)
     
     // console.log('>.........')
