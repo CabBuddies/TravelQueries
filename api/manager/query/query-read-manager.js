@@ -3,13 +3,13 @@ const Query = require('../../models/query');
 const QueryWriteManager = require('./query-write-manager');
 const ResponseReadManager = require('../response/response-read-manager');
 const CommentReadManager = require('../comment/comment-read-manager');
-
+const OpinionReadManager = require('../opinion/opinion-read-manager');
 
 async function listQueries(){
     return await Query.find({active:true}).lean()
 }
 
-async function viewQuery(queryId){
+async function viewQuery(queryId,user){
     
     let query = await Query.findById(queryId).lean()
     
@@ -17,9 +17,8 @@ async function viewQuery(queryId){
 
     query.comments = await CommentReadManager.getComments({query:queryId})
 
-    for (let index = 0; index < query.responses.length; index++) {
-        query.responses[index].comments = await CommentReadManager.getComments({response:query.responses[index]._id})
-    }
+    if(user._id)
+    query.opinions = await OpinionReadManager.readOpinions({query:queryId,user:user._id})
 
     //StatsManager.updateViews(query.stats)
 

@@ -35,7 +35,7 @@ router.get('/read', async (req,res)=>{
     const { queryId } = req.query;
     console.log('/query/read called '+queryId)
 
-    let query = await QueryManager.viewQuery(queryId)
+    let query = await QueryManager.viewQuery(queryId,req.val)
     
     // console.log('>.........')
     // console.log(query.responses[0].body)
