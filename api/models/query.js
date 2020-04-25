@@ -23,8 +23,7 @@ const querySchema = mongoose.Schema({
     tags:[{
         type:String,
         minLength:2,
-        maxLength:64,
-        unique: true
+        maxLength:64
     }],
     stats:statsSchema,
     postedOn:{ 
