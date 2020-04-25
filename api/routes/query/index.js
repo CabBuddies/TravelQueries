@@ -32,7 +32,11 @@ router.get('/list', async (req,res)=>{
 })
 //authToken.optAuthenticateToken, 
 router.get('/read', async (req,res)=>{
-    const {token,user} = await authToken.extractUser(req)
+    try {
+        const {token,user} = await authToken.extractUser(req)
+    } catch (error) {
+        console.log(error)
+    }
     const { queryId } = req.query;
     console.log('/query/read called '+queryId)
     console.log(req.val)
