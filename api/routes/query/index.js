@@ -30,8 +30,8 @@ router.post('/create', authToken.authenticateToken ,async (req,res)=>{
 router.get('/list', async (req,res)=>{
     res.send(await QueryManager.listQueries())
 })
-
-router.get('/read', authToken.optAuthenticateToken, async (req,res,next)=>{
+//authToken.optAuthenticateToken, 
+router.get('/read', async (req,res)=>{
 
     const { queryId } = req.query;
     console.log('/query/read called '+queryId)
