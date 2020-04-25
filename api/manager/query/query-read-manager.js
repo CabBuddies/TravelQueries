@@ -17,7 +17,7 @@ async function viewQuery(queryId,user){
 
     query.comments = await CommentReadManager.getComments({query:queryId})
 
-    if(user._id)
+    if(user)
     query.opinions = await OpinionReadManager.readOpinions({query:queryId,user:user._id})
 
     //StatsManager.updateViews(query.stats)
