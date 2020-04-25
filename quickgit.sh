@@ -3,12 +3,13 @@
 
 git add .
 echo "git added"
+msg="..."
 if [ $# -eq 0 ]; then
-    git commit -am "..."
-    echo "git commit"
+    msg="..."
 else
-    git commit -am "$1"
-    echo "git commit"
+    msg=$1
 fi
+git commit -am "$msg"
+echo "git commit"
 git push -u origin master
 echo "git pushed"

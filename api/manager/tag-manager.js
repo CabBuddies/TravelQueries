@@ -5,33 +5,41 @@ const Tag = require('../models/tag');
 async function addQueryToTags(query){
     for (let index = 0; index < query.tags.length; index++) {
         const tag = query.tags[index];
-        await Tag.update(
-            {
-                _id:tag
-            },
-            {
-                $push:{queries:query},
-                $set:{_id:tag.trim()}
-            },
-            {
-                upsert:true
-            }
-        )
+        try {
+            await Tag.update(
+                {
+                    _id:tag
+                },
+                {
+                    $push:{queries:query},
+                    $set:{_id:tag.trim()}
+                },
+                {
+                    upsert:true
+                }
+            )
+        } catch (error) {
+            
+        }
     }
 }
 
 async function removeQueryFromTags(query){
     for (let index = 0; index < query.tags.length; index++) {
         const tag = query.tags[index];
-        await Tag.findOneAndUpdate(
-            {
-                _id:tag
-            },
-            {
-                $pullAll:{queries:[query._id]}
-            },
-            { safe: true }
-        )
+        try {
+            await Tag.findOneAndUpdate(
+                {
+                    _id:tag
+                },
+                {
+                    $pullAll:{queries:[query._id]}
+                },
+                { safe: true }
+            )
+        } catch (error) {
+            
+        }
     }
 }
 
