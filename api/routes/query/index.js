@@ -34,7 +34,7 @@ router.get('/list', async (req,res)=>{
 //authToken.optAuthenticateToken, 
 router.get('/read', authToken.optAuthenticateToken, async (req,res)=>{
     const { queryId } = req.query;
-    console.log(req.val)
+    console.log(req)
     console.log('/query/read called '+queryId)
     console.log(req.val)
     let query = await QueryManager.viewQuery(queryId,req.val)
