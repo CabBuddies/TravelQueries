@@ -32,8 +32,12 @@ router.get('/list', async (req,res)=>{
 })
 //authToken.optAuthenticateToken, 
 router.get('/read', async (req,res)=>{
+    let user=undefined
     try {
-        const {token,user} = await authToken.extractUser(req)
+        console.log(authToken)
+        console.log(authToken.extractUser)
+        const {token,user_} = await authToken.extractUser(req)
+        user = user_
     } catch (error) {
         console.log(error)
     }
