@@ -22,7 +22,7 @@ const responseSchema = mongoose.Schema({
     },
     stats:{
         type:statsSchema,
-        default: statsSchema
+        default: statsSchema.default
     },
     hidden:{
         type:Boolean,
