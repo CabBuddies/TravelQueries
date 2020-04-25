@@ -20,10 +20,7 @@ const responseSchema = mongoose.Schema({
         ref:'Query',
         required: 'Query is required'
     },
-    stats:{
-        type:statsSchema,
-        default: statsSchema
-    },
+    stats:statsSchema,
     hidden:{
         type:Boolean,
         default:false

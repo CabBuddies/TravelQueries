@@ -26,10 +26,7 @@ const querySchema = mongoose.Schema({
         maxLength:64,
         unique: true
     }],
-    stats:{
-        type:statsSchema,
-        default: statsSchema
-    },
+    stats:statsSchema,
     postedOn:{ 
         type: Date, 
         default: Date.now 

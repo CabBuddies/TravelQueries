@@ -14,8 +14,8 @@ async function listQueries(){
     return await QueryReadManager.listQueries()
 }
 
-async function viewQuery(queryId){
-    return await QueryReadManager.viewQuery(queryId)
+async function viewQuery(queryId,user){
+    return await QueryReadManager.viewQuery(queryId,user)
 }
 
 async function updateStats(opinion,added){
